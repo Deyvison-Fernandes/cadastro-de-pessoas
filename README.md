@@ -19,8 +19,10 @@ Executar o build
 Executar o up
 `docker-compose up`
 
-O docker Criará a máquina virtual com os seguintes acessos:
+O docker criará a máquina virtual com os seguintes acessos:
 
 Interface Web [http://localhost:3000/](http://localhost:3000/)
 
 API Rest [http://localhost:5000/](http://localhost:5000/)
+
+Para consultar o serviço de verificação do servidor fazer um requisição get na rota server [http://localhost:5000/server](http://localhost:5000/server)

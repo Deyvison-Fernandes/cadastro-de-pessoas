@@ -43,7 +43,7 @@ function FormPessoa({...props}) {
         setPessoa({...pessoa, [e.target.name]: e.target.value});
     };
     
-    function validarDocumento() {
+    const validarNumero = () => {
         if (maskCpf) {
             return cpf.isValid(pessoa.numero);
         } else {
@@ -51,8 +51,8 @@ function FormPessoa({...props}) {
         }
     }
 
-    function salvar() {
-        if (validarDocumento()) {
+    const salvar = () => {
+        if (validarNumero()) {
             postPessoas(pessoa, props.idPessoa).then(() => {
                 setAlert({
                     ...alert,
@@ -67,14 +67,13 @@ function FormPessoa({...props}) {
                 ...alert,
                 severity: "error",
                 show: true,
-                message: "CPF/CNPJ invalido"
+                message: "CPF/CNPJ inválido"
             });
         }
     }
 
     const getPessoaId = (idPessoa) => {
         getPessoa(idPessoa).then(({data}) => {
-            console.log(data.pessoa.nome);
             let {nome, numero, dataNascimento, blackList} = data.pessoa;
             dataNascimento = moment.utc(dataNascimento).format("YYYY-MM-DD");
             setPessoa({nome, numero, dataNascimento, blackList});

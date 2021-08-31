@@ -17,6 +17,7 @@ import FormPessoa from './FormPessoa';
 import Alert from '@material-ui/lab/Alert';
 import "moment/locale/pt-br";
 import moment from "moment";
+import { cpf, cnpj } from 'cpf-cnpj-validator';
   
 function ListaPessoas() {
   const [rows, setRows] = useState([]);
@@ -111,6 +112,26 @@ function ListaPessoas() {
     setPessoaSelecionada(lista);
   }
 
+  const validarNumero = (numero) => {
+    if (numero.length == 14) {
+        return cpf.isValid(numero);
+    } else {
+        return cnpj.isValid(numero);
+    }
+  }
+
+  const clickPesquisar = (filtros) =>{
+      if(!filtros.numero || validarNumero(filtros.numero)){
+        pesquisarPessoas(filtros);
+      }else{
+        setAlerta({...alert,
+          tipo: "error",
+          exibir: true,
+          mensagem: "CPF/CNPJ inválido"
+        });
+      }
+  }
+
   useEffect(() => {
     pesquisarPessoas();
   }, []);
@@ -136,7 +157,7 @@ function ListaPessoas() {
             {alerta.mensagem}
         </Alert>
       </Collapse>
-      <Filtros clickPesquisar={(filtros) => {pesquisarPessoas(filtros)}}/>
+      <Filtros clickPesquisar={(filtros) => {clickPesquisar(filtros)}}/>
       <div className="action-div">
         <Button variant="contained" className="button-blue" onClick={() => { setOpenModal(true); setIdPessoa(0); }}>
           Incluir

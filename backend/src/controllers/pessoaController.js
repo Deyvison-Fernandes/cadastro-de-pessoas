@@ -17,7 +17,6 @@ router.get('/', async (request, response) => {
         
         return response.send({pessoa});
     } catch(error){
-        console.log(error);
         return response.status(400).send({ error: true, messageError: 'Ocorreu um erro ao listar os dados' });
     }
 });
@@ -79,7 +78,6 @@ router.post('/deleteMany', async (req, res) => {
     try {
 
         const listaIds = req.body;
-        console.log(listaIds);
         if (Array.isArray(listaIds) && listaIds.length > 0) {
             await Pessoa.deleteMany({ '_id': { '$in': listaIds } });
         }

@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  cadastropessoas-web:
+    container_name: cadastropessoas_web
+    image: cadastropessoas-web
+    restart: always
+    build: ./web
+    ports: 
+      - "3000:3000"
+  cadastropessoas-api:
+    container_name: cadastropessoas_api
+    image: cadastropessoas-api
+    restart: always
+    build: ./backend
+    ports: 
+      - "5000:5000"
+    links: 
+      - mongo
+  mongo:
+    container_name: mongodb
+    image: mongo
+    ports: 
+      - "27017:27017"

@@ -1,0 +1,50 @@
+body {
+  background: #f3f3f3;
+}
+
+.container-main{
+  padding-top: 30px;
+}
+.app-bar {
+  background: #303965 !important;
+}
+
+.data-grid {
+  background: #fff;
+  height: 60vh;
+}
+
+.action-div {
+  padding-bottom: 30px;
+}
+
+.action-div button{
+  margin-right: 10px;
+}
+
+.button-blue {
+  background: #303965 !important;
+  color: #fff !important;
+}
+
+.MuiFormControl-marginNormal{
+  margin-top: 0 !important;
+}
+
+.input-filtro {
+  margin-right: 10px !important;
+}
+
+.div-filtros{
+  background:'#fff';
+  padding:10px;
+  margin-bottom: 20px;
+}
+
+.botao-modal-close{
+  float: right;
+}
+
+.alerta {
+  margin-bottom: 5px;
+}
